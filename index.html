@@ -1,0 +1,94 @@
+<!doctype html>
+<html ng-app="myapp">
+  <head>
+    <meta charset="UTF-8">
+    <!--lib-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.9/angular.min.js'></script>
+    <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script src='https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js'></script>    
+    <script type="text/javascript" src="js/controllers/app.js"  ></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44226715-7', 'codingisloving.com');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <body>
+
+    <div class="container" ng-controller="MyController">
+
+      <!--First row with Header, Select Week drop down menu-->
+      <div class="row">
+        <h1>&nbsp;<img src="icon.png"> BarLaurea Web App</h1>
+          &nbsp;&nbsp;&nbsp;&nbsp;<div class="btn-group">
+            <button id="selectWeek" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"></button>
+            <ul id="pastWeeks"class="dropdown-menu"></ul>
+        </div><br/><br/>
+      </div>       
+
+      <!--Second row with a list view of week day's menu, a sidebar containing an edit form will appear when user click on edit-->
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-6">        
+          <input  ng-model="query" class="form-control" placeholder="Search by foods'names or week day" autofocus/>
+          <div id="menuList" ng-repeat="item in items | orderByPriority | filter: query" >
+            <h2>{{item.weekDay}}</h2>
+            <a href="" ng-click="editWeekDay(item.weekDay)">Edit <span class="glyphicon glyphicon-pencil"></span></a><br/>
+            <b>Meat: </b>{{item.meat}}<br/>
+            <b>Soup: </b>{{item.soup}}<br/>
+            <b>Special Offer: </b>{{item.specialOffer}}<br/>
+            <b>Vegetable: </b>{{item.vegetable}}
+            <hr/>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 col-md-6 col-sm-1 col-xs-6">
+          <div ng-include src="sidebarEdit"></div>
+        </div>
+      </div>
+
+  </div>
+  </body>
+  <script>
+
+    //This is for future implementation when we have a more complex data structure with multiple weeks, even months and years, for now these code below return the current week number
+
+    Date.prototype.getCurrentWeek = function() {
+        var onejan = new Date(this.getFullYear(), 0, 1);
+        return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+    }
+
+    var weekNumber = (new Date()).getCurrentWeek();
+    pastWeekString="<li role=\"presentation\" class=\"disabled\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">You don't have permission to select past items</a></li>"
+    for(i=weekNumber-1;i>=1;i--){
+      pastWeekString+="<li role=\"presentation\" class=\"disabled\"><a href=\"#\">Week "+i+"</a></li>"
+    }
+
+    document.getElementById("selectWeek").innerHTML="Current week is week "+weekNumber+" <span class=\"caret\"></span>";
+    document.getElementById("pastWeeks").innerHTML=pastWeekString;
+</script>
+<!-- AddThis Smart Layers BEGIN -->
+<!-- Go to http://www.addthis.com/get/smart-layers to customize -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-509c4d5d1de16d7e"></script>
+<script type="text/javascript">
+  addthis.layers({
+    'theme' : 'light',
+    'share' : {
+      'position' : 'left',
+      'numPreferredServices' : 5
+    }   
+  });
+</script>
+<!-- AddThis Smart Layers END -->
+</html>

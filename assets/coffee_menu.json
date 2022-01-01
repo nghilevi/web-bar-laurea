@@ -1,0 +1,50 @@
+[ { "category" : "Coffee",
+    "instructions" : "",
+    "name" : "Cappuccino",
+    "photo" : "cappuccino.jpg",
+    "price" : 15.99,
+    "productId" : 1
+  },
+  { "category" : "Coffee",
+    "instructions" : "",
+    "name" : "Espresso",
+    "photo" : "espresso.jpg",
+    "price" : 33.990000000000002,
+    "productId" : 2
+  },
+  { "category" : "Coffee",
+    "instructions" : "",
+    "name" : "Café au lait",
+    "photo" : "aulait.jpg",
+    "price" : 12.99,
+    "productId" : 3
+  },
+  { "category" : "Coffee",
+    "instructions" : "",
+    "name" : "Mocha",
+    "photo" : "mocha.jpg",
+    "price" : 5.9900000000000002,
+    "productId" : 4
+  },
+  { "category" : "Coffee",
+    "instructions" : "",
+    "name" : "Affogato",
+    "photo" : "affogato.jpg",
+    "price" : 12.99,
+    "productId" : 3
+  },
+  { "category" : "Coffee",
+    "instructions" : "",
+    "name" : "Black Eye",
+    "photo" : "blackeye.jpg",
+    "price" : 5.9900000000000002,
+    "productId" : 4
+  },
+  { "category" : "Coffee",
+    "instructions" : "",
+    "name" : "Ca phe sua da",
+    "photo" : "caphesuada.jpg",
+    "price" : 5.9900000000000002,
+    "productId" : 4
+  }
+]
